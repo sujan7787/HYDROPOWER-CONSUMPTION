@@ -268,7 +268,7 @@ This Streamlit application serves as an interactive interface for users to obtai
 *   **Hyperparameter Tuning (Prophet without Regressors)**: Cross-validation identified optimal parameters: `changepoint_prior_scale=0.5`, `seasonality_prior_scale=0.1`, and `daily_seasonality=True`, resulting in an average RMSE of 0.563 and MAE of 0.371.
 *   **Deployment**: The best-performing Prophet model (with regressors) was saved as `prophet_model_with_regressors.pkl`, and a Streamlit application was developed for real-time predictions based on user-input features.
 
-### Insights or Next Steps
+### Insights 
 
 *   The inclusion of external regressors is paramount for achieving high accuracy in forecasting 'Global\_active\_power', dramatically outperforming models reliant only on time series components or simpler statistical methods like ETS.
 *   Future enhancements could involve exploring additional domain-specific regressors (e.g., temperature, holiday indicators), expanding the dataset to capture longer-term seasonalities, and applying advanced hyperparameter tuning specifically to the regressor-enhanced Prophet model.
