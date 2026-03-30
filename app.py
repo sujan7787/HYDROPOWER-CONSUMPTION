@@ -56,7 +56,7 @@ day_of_week = st.slider(
 
 month = 10  # fixed, because  training data is only October
 
-if st.button("🚀 Predict"):
+if st.button(" Predict"):
 
     # Use a ds close to training dates to avoid extreme extrapolation cause i got unexpected error when i didnot used that...
     future = pd.DataFrame({
