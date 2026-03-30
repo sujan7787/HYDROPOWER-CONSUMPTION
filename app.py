@@ -2,11 +2,9 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-st.title("⚡ Energy Prediction App (Safe Version)")
+st.title(" Energy Prediction App")
 
-# -------------------------------
 # Load trained model
-# -------------------------------
 @st.cache_resource
 def load_model():
     with open("prophet_model_with_regressors.pkl", "rb") as f:
@@ -15,10 +13,8 @@ def load_model():
 
 model = load_model()
 
-# -------------------------------
-# INPUT FEATURES (with min/max from training)
-# -------------------------------
-st.subheader("🔧 Enter Input Features (Within Training Range)")
+
+st.subheader("Enter Input Features")
 
 global_intensity = st.slider(
     "Global Intensity (1.0 - 22.4)",
@@ -58,16 +54,13 @@ day_of_week = st.slider(
     value=3
 )
 
-month = 10  # fixed, because your training data is only October
+month = 10  # fixed, because  training data is only October
 
-# -------------------------------
-# PREDICT BUTTON
-# -------------------------------
 if st.button("🚀 Predict"):
 
-    # Use a ds close to training dates to avoid extreme extrapolation
+    # Use a ds close to training dates to avoid extreme extrapolation cause i got unexpected error when i didnot used that...
     future = pd.DataFrame({
-        'ds': pd.to_datetime(['2010-10-03 14:00:00']),  # same day as training
+        'ds': pd.to_datetime(['2010-10-03 14:00:00']),  
         'Global_intensity': [global_intensity],
         'Sub_metering_3': [sub_metering_3],
         'Voltage': [voltage],
@@ -84,9 +77,7 @@ if st.button("🚀 Predict"):
     yhat_lower = max(forecast['yhat_lower'].values[0], 0)
     yhat_upper = max(forecast['yhat_upper'].values[0], 0)
 
-    # -------------------------------
-    # SHOW RESULTS
-    # -------------------------------
+   
     st.subheader("⚡ Predicted Global Active Power")
     st.success(f"{predicted_power:.3f} kW")
 
